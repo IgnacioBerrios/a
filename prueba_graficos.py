@@ -1,19 +1,12 @@
 # -*- coding: utf-8 -*-
 """prueba_graficos.py
 
-Generación de gráficos interactivos con Streamlit.
+Generación de gráficos interactivos con Streamlit sin seaborn.
 """
 
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
-
-# Verificar si las bibliotecas están instaladas, si no, ejecuta el código manualmente
-# pip install pandas seaborn matplotlib streamlit
-
-# Configurar el estilo de gráficos
-sns.set(style="whitegrid")
 
 # Cargar el archivo CSV
 @st.cache_data
@@ -39,13 +32,12 @@ selected_genre = st.selectbox("Selecciona un género:", options=genres)
 # Filtrar datos según el género seleccionado
 filtered_data = pf[pf['genre'] == selected_genre]
 
-# Crear el gráfico de dispersión
+# Crear el gráfico de dispersión usando solo matplotlib
 plt.figure(figsize=(10, 6))
-sns.scatterplot(
-    data=filtered_data,
-    x='release_date',
-    y='stream',
-    alpha=0.7,
+plt.scatter(
+    filtered_data['release_date'], 
+    filtered_data['stream'], 
+    alpha=0.7, 
     color='blue'
 )
 plt.title(f"Fecha de Publicación vs Reproducciones ({selected_genre})", fontsize=16)
