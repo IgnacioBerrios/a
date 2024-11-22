@@ -13,7 +13,7 @@ pf = load_data()
 pf = pf.dropna(subset=['release_date']) 
 pf['year'] = pf['release_date'].dt.year  
 
-st.title("Gráfico de Dispersión por Género")
+st.title("Gráfico de Línea por Género")
 st.markdown(
     "Selecciona un género para visualizar cómo se distribuyen las reproducciones según la fecha de publicación."
 )
@@ -32,13 +32,12 @@ filtered_data = filtered_data[
 ]
 
 fig = px.line(
-    filtered_data,
+    filtered_data.sort_values('release_date'),
     x='release_date',
     y='stream',
-    title=f"Fecha de Publicación vs Reproducciones ({selected_genre}, {rango_años[0]}-{rango_años[1]})",
+    title=f"Reproducciones a lo largo del tiempo ({selected_genre}, {rango_años[0]}-{rango_años[1]})",
     labels={"release_date": "Fecha de Publicación", "stream": "Reproducciones"},
-    template="plotly_white",
-    opacity=0.7
+    template="plotly_white"
 )
 
 fig.update_layout(
@@ -46,5 +45,6 @@ fig.update_layout(
     yaxis=dict(title="Reproducciones"),
     title_font_size=16,
 )
+
 
 st.plotly_chart(fig)
