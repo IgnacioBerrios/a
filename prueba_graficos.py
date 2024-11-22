@@ -13,9 +13,9 @@ pf = load_data()
 pf = pf.dropna(subset=['release_date']) 
 pf['year'] = pf['release_date'].dt.year  
 
-st.title("Gráfico de Dispersión por Género")
+st.title("Reproducciones segun fecha de publicación")
 st.markdown(
-    "Selecciona un género para visualizar cómo se distribuyen las reproducciones según la fecha de publicación."
+    "Selecciona un género para observar cómo se distribuyen las reproducciones según la fecha de publicación."
 )
 
 genres = pf['genre'].dropna().unique()
