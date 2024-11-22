@@ -1,5 +1,5 @@
-import pandas as pd
-import plotly.express as px
+mport pandas as pd
+import matplotlib.pyplot as plt
 import streamlit as st
 
 @st.cache_data
@@ -8,6 +8,10 @@ def load_data():
     data = pd.read_csv(file_path, sep=';')
     data['release_date'] = pd.to_datetime(data['release_date'], errors='coerce') 
     return data
+
+
+
+cambia el matplotlib por otra libreria que cumpla la misma funcion
 
 pf = load_data()
 pf = pf.dropna(subset=['release_date']) 
@@ -31,22 +35,20 @@ filtered_data = filtered_data[
     (filtered_data['year'] >= rango_años[0]) & (filtered_data['year'] <= rango_años[1])
 ]
 
-# Crear el gráfico interactivo con Plotly
-fig = px.scatter(
-    filtered_data,
-    x='release_date',
-    y='stream',
-    title=f"Fecha de Publicación vs Reproducciones ({selected_genre}, {rango_años[0]}-{rango_años[1]})",
-    labels={"release_date": "Fecha de Publicación", "stream": "Reproducciones"},
-    template="plotly_white",
-    opacity=0.7
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.scatter(
+    filtered_data['release_date'],
+    filtered_data['stream'],
+    alpha=0.7,
+    color='blue'
 )
-
-fig.update_layout(
-    xaxis=dict(title="Fecha de Publicación"),
-    yaxis=dict(title="Reproducciones"),
-    title_font_size=16,
+ax.set_title(
+    f"Fecha de Publicación vs Reproducciones ({selected_genre}, {rango_años[0]}-{rango_años[1]})",
+    fontsize=16
 )
+ax.set_xlabel("Fecha de Publicación", fontsize=12)
+ax.set_ylabel("Reproducciones", fontsize=12)
+ax.grid(True)
+plt.xticks(rotation=45)
 
-# Mostrar el gráfico en Streamlit
-st.plotly_chart(fig)
+st.pyplot(fig)
