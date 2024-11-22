@@ -13,7 +13,7 @@ pf = load_data()
 pf = pf.dropna(subset=['release_date']) 
 pf['year'] = pf['release_date'].dt.year  
 
-st.title("Reproducciones segun fecha de publicación")
+st.title("Reproducciones según fecha de publicación")
 st.markdown(
     "Selecciona un género para observar cómo se distribuyen las reproducciones según la fecha de publicación."
 )
