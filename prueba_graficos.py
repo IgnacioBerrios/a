@@ -31,8 +31,7 @@ filtered_data = filtered_data[
     (filtered_data['year'] >= rango_años[0]) & (filtered_data['year'] <= rango_años[1])
 ]
 
-# Crear el gráfico interactivo con Plotly
-fig = px.scatter(
+fig = px.plot(
     filtered_data,
     x='release_date',
     y='stream',
@@ -48,5 +47,4 @@ fig.update_layout(
     title_font_size=16,
 )
 
-# Mostrar el gráfico en Streamlit
 st.plotly_chart(fig)
