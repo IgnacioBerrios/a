@@ -31,7 +31,7 @@ filtered_data = filtered_data[
     (filtered_data['year'] >= rango_años[0]) & (filtered_data['year'] <= rango_años[1])
 ]
 
-fig = px.plot(
+fig = px.line(
     filtered_data,
     x='release_date',
     y='stream',
