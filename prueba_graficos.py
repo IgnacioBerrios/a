@@ -35,8 +35,9 @@ fig = px.scatter(
     filtered_data,
     x='release_date',
     y='stream',
+    color='genre',
     title=f"Fecha de Publicación vs Reproducciones ({selected_genre}, {rango_años[0]}-{rango_años[1]})",
-    labels={"release_date": "Fecha de Publicación", "stream": "Reproducciones"},
+    labels={"release_date": "Fecha de Publicación", "stream": "Reproducciones", 'genre': 'Genero'},
     template="plotly_white",
     opacity=0.7
 )
