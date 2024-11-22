@@ -41,7 +41,7 @@ color_map = {
     "Classical":"brown",
     "Country":"skyblue",
     "Reggae":"white",
-    
+}    
 
 fig = px.scatter(
     filtered_data,
