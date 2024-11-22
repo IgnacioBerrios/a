@@ -3,13 +3,13 @@ import plotly.express as px
 import streamlit as st
 
 @st.cache_data
-def load_data():
-    file_path = 'spotify_songs_dataset.csv'
-    data = pd.read_csv(file_path, sep=';')
+def datos_cargados():
+    ruta = 'spotify_songs_dataset.csv'
+    data = pd.read_csv(ruta, sep=';')
     data['release_date'] = pd.to_datetime(data['release_date'], errors='coerce') 
     return data
 
-pf = load_data()
+pf = datos_cargados()
 pf = pf.dropna(subset=['release_date']) 
 pf['year'] = pf['release_date'].dt.year  
 
