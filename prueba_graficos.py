@@ -3,14 +3,9 @@ import plotly.express as px
 import streamlit as st
 
 @st.cache_data
-def datos_cargados():
-    ruta = 'spotify_songs_dataset.csv'
-    data = pd.read_csv(ruta, sep=';')
-    data['release_date'] = pd.to_datetime(data['release_date'], errors='coerce') 
-    return data
-
-pf = datos_cargados()
-pf = pf.dropna(subset=['release_date']) 
+ruta = 
+pf = pd.read_csv('spotify_songs_dataset.csv', sep=';')
+pf['release_date'] = pd.to_datetime(pf['release_date'], errors='coerce') 
 pf['year'] = pf['release_date'].dt.year  
 
 st.title("Reproducciones según fecha de publicación")
